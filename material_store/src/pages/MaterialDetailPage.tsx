@@ -1,13 +1,29 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Breadcrumbs } from "../components/Breadcrumbs";
-import { MATERIALS_MOCK } from "../modules/mock";
+import { getMaterialById, type Material } from "../modules/materialsApi";
 import defaultImage from "../assets/DefaultImage.png";
 import "./MaterialDetailPage.css";
 
 export const MaterialDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const material = MATERIALS_MOCK.results.find((m) => m.id === Number(id));
+  const [material, setMaterial] = useState<Material | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    getMaterialById(Number(id))
+      .then((data) => setMaterial(data)) // ✅ тут просто data, без .material
+      .catch((error) =>
+        console.error("Ошибка при загрузке материала:", error)
+      )
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) {
+    return <div className="text-center mt-5">Загрузка...</div>;
+  }
 
   if (!material) {
     return <div>Материал не найден</div>;
@@ -17,7 +33,7 @@ export const MaterialDetailPage: React.FC = () => {
     <div className="material-detail-page">
       <div className="container">
         {/* Хлебные крошки */}
-        <div className="breadcrumbs-wrapper">
+        <div className="d-flex justify-content-between align-items-center mb-3 breadcrumbs-wrapper">
           <Breadcrumbs
             items={[
               { name: "Каталог", path: "/catalog" },

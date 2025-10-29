@@ -27,7 +27,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
   return (
     <Breadcrumb className="breadcrumbs mt-3 mb-4">
       {/* Всегда первая крошка — Главная */}
-      <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+      <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }} key="home">
         Главная
       </Breadcrumb.Item>
 
