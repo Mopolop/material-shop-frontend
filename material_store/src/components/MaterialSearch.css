@@ -1,0 +1,29 @@
+.no-focus-outline:focus {
+  outline: none;        /* убираем стандартный фокус */
+  box-shadow: none;     /* убираем тень при фокусе */
+}
+
+.material-search {
+  max-width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.no-focus-outline:focus,
+.no-focus-outline:active {
+  outline: none !important;       /* убираем стандартный контур */
+  box-shadow: none !important;    /* убираем тень при фокусе */
+}
+
+.material-search input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  height: 38px;
+}
