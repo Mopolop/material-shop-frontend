@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-crt
-key
+# SSL certificates
+*.crt
+*.key
+*.pem
