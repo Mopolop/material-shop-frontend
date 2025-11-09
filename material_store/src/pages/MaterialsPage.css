@@ -10,3 +10,45 @@
   font-size: 1.8rem;
   text-align: left;
 }
+
+/* Корзина */
+.cart {
+  position: relative;
+  width: 72px;
+  height: 50px;
+  background: #fcc11c;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+  margin-top: -24px; 
+}
+
+.cart-count-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Hover для корзины */
+.cart:hover {
+  background: #e79f26;
+}

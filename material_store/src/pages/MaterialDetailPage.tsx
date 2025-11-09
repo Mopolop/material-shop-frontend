@@ -14,7 +14,7 @@ export const MaterialDetailPage: React.FC = () => {
     if (!id) return;
 
     getMaterialById(Number(id))
-      .then((data) => setMaterial(data)) // ✅ тут просто data, без .material
+      .then((data) => setMaterial(data)) 
       .catch((error) =>
         console.error("Ошибка при загрузке материала:", error)
       )

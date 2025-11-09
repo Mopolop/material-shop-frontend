@@ -5,16 +5,18 @@ import { MaterialCard } from "../components/MaterialCard";
 import { MaterialSearch } from "../components/MaterialSearch";
 import { getMaterials, type Material } from "../modules/materialsApi";
 import defaultImage from "../assets/DefaultImage.png";
+import cartIcon from "../assets/cart-icon.png";
 import "../components/MaterialSearch.css";
 import "./MaterialsPage.css";
 
 export const MaterialsPage: React.FC = () => {
   const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(true);
+  const [cartCount, setCartCount] = useState<number>(0);
 
-  const handleSearch = (query: string) => {
+  const handleSearch = (searchQuery: string) => {
     setLoading(true);
-    getMaterials(query)
+    getMaterials(searchQuery)
       .then((response) => {
         const materialsData = response.materials.map((mat) => ({
           id: mat.ID,
@@ -34,12 +36,24 @@ export const MaterialsPage: React.FC = () => {
         }));
         setMaterials(materialsData);
       })
-      .catch((error) => {
-        console.error("Ошибка при загрузке материалов:", error);
-      })
+      .catch((error) => console.error("Ошибка при загрузке материалов:", error))
       .finally(() => setLoading(false));
   };
 
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetch("/api/cart/json");
+        const data = await response.json();
+        setCartCount(data.count || 0);
+      } catch (error) {
+        console.error("Ошибка при загрузке корзины:", error);
+      }
+    };
+    fetchCart();
+  }, []);
+
+  // загружаем все материалы при первом рендере
   useEffect(() => {
     handleSearch("");
   }, []);
@@ -49,7 +63,13 @@ export const MaterialsPage: React.FC = () => {
       <Container className="py-4">
         <div className="d-flex justify-content-between align-items-center mb-3 breadcrumbs-wrapper">
           <Breadcrumbs items={[{ name: "Каталог", path: "/catalog" }]} />
-          <MaterialSearch onSearch={handleSearch} />
+          <div className="d-flex align-items-center">
+            <MaterialSearch onSearch={handleSearch} />
+            <div className="cart" style={{ cursor: "default" }}>
+              <img src={cartIcon} alt="Cart" />
+              <div className="cart-count-badge">{cartCount}</div>
+            </div>
+          </div>
         </div>
 
         {loading ? (
