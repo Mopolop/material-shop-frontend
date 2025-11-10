@@ -6,33 +6,33 @@ import "./Header.css";
 
 export const Header: React.FC = () => {
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm">
-      <Container className="d-flex justify-content-between align-items-center">
+    <Navbar bg="light" expand="lg" className="shadow-sm" sticky="top">
+      <Container className="app-container d-flex justify-content-between align-items-center">
         {/* Логотип */}
         <NavLink to="/" className="navbar-logo-link">
           <img src={logo} alt="Лемана Про" className="navbar-logo" />
         </NavLink>
 
-        {/* Навигация */}
-        <Nav className="navbar-links">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Главная
-          </NavLink>
-          <NavLink
-            to="/catalog"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Материалы
-          </NavLink>
-        </Nav>
+        {/* Toggle for mobile */}
+        <Navbar.Toggle aria-controls="main-navbar" />
+
+        <Navbar.Collapse id="main-navbar">
+          <Nav className="ms-auto navbar-links">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+            >
+              Главная
+            </NavLink>
+            <NavLink
+              to="/catalog"
+              className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+            >
+              Материалы
+            </NavLink>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

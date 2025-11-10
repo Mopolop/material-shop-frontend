@@ -5,6 +5,17 @@
   text-align: center;
 }
 
+/* Переиспользуемый контейнер для централизации макета */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+  transition: padding 240ms ease, max-width 240ms ease;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

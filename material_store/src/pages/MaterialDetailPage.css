@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   margin-top: -20px;
+  transition: all 260ms ease;
 }
 
 .material-image img {
@@ -26,6 +27,7 @@
   flex-direction: column;
   align-items: flex-start; /* заголовок слева */
   gap: 20px;
+  transition: padding 260ms ease, min-height 260ms ease;
 }
 
 /* Заголовок остаётся без отступа */
@@ -55,6 +57,43 @@
   width: 100%;
   max-width: 400px;
   margin-left: 50px; /* вот этот сдвиг вправо */
+}
+
+/* Адаптив: на узких экранах укладываем колонки вертикально */
+@media (max-width: 768px) {
+  .material-container {
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+    align-items: center;
+  }
+
+  .material-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .material-info-wrapper {
+    width: 100%;
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .material-details {
+    margin-left: 0;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .material-title {
+    text-align: left;
+  }
+}
+
+@media (max-width: 420px) {
+  .material-info-wrapper { padding: 12px; }
+  .material-title { font-size: 20px; }
 }
 
 

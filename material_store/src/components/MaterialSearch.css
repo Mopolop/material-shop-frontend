@@ -27,3 +27,18 @@
   padding: 6px 12px;
   height: 38px;
 }
+
+/* Mobile: make search flexible and occupy remaining space */
+@media (max-width: 576px) {
+  .material-search {
+    max-width: none;
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .material-search input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+  }
+}

@@ -18,6 +18,77 @@
   gap: 24px;
 }
 
+/* Адаптив: уменьшаем логотип и делаем ссылки компактнее */
+@media (max-width: 768px) {
+  .navbar-logo {
+    height: 48px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar-logo { height: 40px; }
+  .nav-link { font-size: 0.9rem; }
+}
+
+/* Плавный переход для навигации при разворачивании/сжатии */
+.navbar .navbar-collapse {
+  transition: height 280ms ease, opacity 240ms ease;
+}
+
+.nav-link {
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+/* Reduce gap inside collapsed (mobile) menu and avoid overlapping animations */
+.navbar-collapse .navbar-links {
+  transition: padding 200ms ease;
+}
+
+/* When collapse is open, show links with slight stagger (avoid overlap) */
+.navbar-collapse.show .navbar-links {
+  gap: 6px;
+  padding: 8px 0;
+}
+
+.navbar-collapse.show .navbar-links .nav-link:nth-child(1) { transition-delay: 10ms; }
+.navbar-collapse.show .navbar-links .nav-link:nth-child(2) { transition-delay: 80ms; }
+.navbar-collapse.show .navbar-links .nav-link:nth-child(3) { transition-delay: 140ms; }
+.navbar-collapse.show .navbar-links .nav-link:nth-child(4) { transition-delay: 200ms; }
+
+.navbar-collapse.show .navbar-links .nav-link {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Make collapsed links vertical and reduce spacing on small screens */
+@media (max-width: 991px) {
+  /* Hide links by default when collapse is not open (mobile) */
+  .navbar-collapse.collapse:not(.show) .navbar-links .nav-link {
+    transform: translateY(-6px);
+    opacity: 0;
+    transition: transform 240ms ease, opacity 200ms ease;
+  }
+
+  .navbar-collapse .navbar-links {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .navbar-collapse .navbar-links .nav-link {
+    padding: 6px 10px;
+  }
+}
+
 .nav-link {
   font-family: 'Inter', sans-serif;
   font-weight: 500;

@@ -1,13 +1,15 @@
 .material-card {
-  width: 300px;       /* чуть шире */
+  /* карточка занимает всю ширину колонки; ширина колонки управляется сеткой (Col) */
+  width: 100%;
   background: #ffffff;
-  border: none !important;       /* убираем рамки */
-  border-radius: 0 !important;   /* острые углы */
+  border: none !important;
+  border-radius: 0 !important;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 380px;      /* фиксированная высота для всех карточек */
+  min-height: 100%;
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .card-image {
@@ -19,8 +21,10 @@
 }
 
 .card-image img {
-  width: 220px;       /* чуть шире, чтобы соответствовало карточке */
-  height: 220px;
+  width: 100%;
+  max-width: 220px; /* ограничение на больших экранах */
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 0;
 }
@@ -42,8 +46,8 @@
   text-align: left;
   margin: 0;
   padding: 0;
-  min-height: 60px;       /* фиксированная высота для текста */
-  overflow: hidden;       /* обрезаем, если текст слишком длинный */
+  min-height: 48px; /* даём немного меньше жёсткой высоты */
+  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
@@ -79,5 +83,35 @@
   text-decoration: none;
   color: inherit;
   height: 100%;
+}
+
+/* Адаптивные правила */
+@media (max-width: 576px) {
+  .material-card {
+    padding: 8px;
+  }
+
+  .card-image img {
+    max-width: 100%;
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .card-title {
+    min-height: auto;
+    font-size: 14px;
+  }
+}
+
+/* Hover effects with smooth transition */
+.material-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .card-image img {
+    max-width: 200px;
+  }
 }
 

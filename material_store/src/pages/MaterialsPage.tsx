@@ -43,17 +43,20 @@ export const MaterialsPage: React.FC = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch("/api/cart/json");
+        const response = await fetch("/api/material_orders/draft/cart");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
         setCartCount(data.count || 0);
       } catch (error) {
         console.error("Ошибка при загрузке корзины:", error);
+        setCartCount(0);
       }
     };
     fetchCart();
   }, []);
 
-  // загружаем все материалы при первом рендере
   useEffect(() => {
     handleSearch("");
   }, []);
@@ -63,7 +66,7 @@ export const MaterialsPage: React.FC = () => {
       <Container className="py-4">
         <div className="d-flex justify-content-between align-items-center mb-3 breadcrumbs-wrapper">
           <Breadcrumbs items={[{ name: "Каталог", path: "/catalog" }]} />
-          <div className="d-flex align-items-center">
+          <div className="tools-row d-flex align-items-center">
             <MaterialSearch onSearch={handleSearch} />
             <div className="cart" style={{ cursor: "default" }}>
               <img src={cartIcon} alt="Cart" />
