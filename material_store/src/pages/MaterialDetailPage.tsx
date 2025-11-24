@@ -4,6 +4,7 @@ import { Breadcrumbs } from "../components/Breadcrumbs";
 import { getMaterialById, type Material } from "../modules/materialsApi";
 import defaultImage from "../assets/DefaultImage.png";
 import "./MaterialDetailPage.css";
+import { dest_img } from "../target_config";
 
 export const MaterialDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -46,7 +47,7 @@ export const MaterialDetailPage: React.FC = () => {
         <div className="material-container">
           {/* Изображение */}
           <div className="material-image">
-            <img src={material.image || defaultImage} alt={material.title} />
+           <img src={material.image ? dest_img + material.image.replace(/^\//, "") : defaultImage} alt={material.title} />
           </div>
 
           {/* Информация в рамке */}

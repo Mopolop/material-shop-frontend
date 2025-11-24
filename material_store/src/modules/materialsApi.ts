@@ -1,3 +1,5 @@
+import { dest_api } from "../target_config";
+
 export interface Material {
   id: number;
   title: string;
@@ -49,7 +51,7 @@ export interface MaterialResponse {
  */
 export const getMaterials = async (title = ""): Promise<ServerMaterialsResponse> => {
   try {
-    const response = await fetch(`/api/materials?title=${encodeURIComponent(title)}`, {
+    const response = await fetch(`${dest_api}/materials?title=${encodeURIComponent(title)}`, {
       method: "GET",
     });
 
@@ -116,7 +118,7 @@ const mapServerToMaterial = (s: ServerMaterial): Material => ({
  */
 export const getMaterialById = async (id: number): Promise<Material> => {
   try {
-    const response = await fetch(`/api/materials/${id}`, { method: "GET" });
+    const response = await fetch(`${dest_api}/materials/${id}`, { method: "GET" });
 
     if (!response.ok) {
       throw new Error(`Ошибка загрузки материала: ${response.statusText}`);
