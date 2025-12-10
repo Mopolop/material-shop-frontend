@@ -1,8 +1,8 @@
 
-const target_tauri = false
+const target_tauri = true
 
-export const api_proxy_addr = "http://192.168.56.1:8080/api"
-export const img_proxy_addr = "http://192.168.56.1:9000"
+export const api_proxy_addr = "http://192.168.1.192:8080/api"
+export const img_proxy_addr = "http://192.168.1.192:9000"
 
 // Проверяем, запущен ли проект в режиме разработки (через Vite).
 // Vite автоматически добавляет переменную import.meta.env.DEV === true, если это dev-сборка.

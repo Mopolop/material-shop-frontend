@@ -7,7 +7,6 @@ export const HomePage: React.FC = () => {
   return (
     <div className="homepage">
       
-      {/* GIF-фон */}
       <img src={`${dest_root}/background.gif`} className="background-gif" alt="background" />
 
       <div className="overlay">

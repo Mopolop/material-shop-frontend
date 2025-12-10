@@ -51,7 +51,7 @@ export interface MaterialResponse {
  */
 export const getMaterials = async (title = ""): Promise<ServerMaterialsResponse> => {
   try {
-    const response = await fetch(`${dest_api}/materials?title=${encodeURIComponent(title)}`, {
+    const response = await fetch(`${dest_api}/materials?material-by-name=${encodeURIComponent(title)}`, {
       method: "GET",
     });
 
